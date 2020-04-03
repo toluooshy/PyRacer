@@ -21,19 +21,19 @@ def main():
 	BLACK = (0,0,0)
 	GRAY = (50,50,50)
 	DISPLAY.fill(BLACK)
-	background = pygame.transform.scale(pygame.image.load('images/background2.png'), (WIDTH,HEIGHT))
+	background = pygame.transform.scale(pygame.image.load('images/background3.png'), (WIDTH,HEIGHT))
 
 
 	street = Road()
 
 	tree1 = Tree()
-	racer = Player(30, 30, WIDTH/2, 7*HEIGHT/8 - 10)
+	racer = Player(30, 30, WIDTH/2, 7*HEIGHT/8 - 20)
 
 
 
 
 	while True:
-		DISPLAY.blit(background, (0,0))
+		DISPLAY.blit(background, (0,-100))
 
 		street.readtrack()
 		street.update()
