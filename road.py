@@ -28,7 +28,7 @@ class Road:
 		self.speed = 0
 		self.sp = 0
 		self.linecolor = 0
-
+		self.objectset = 0
 	def update(self):
 		for roadslice in range(100):
 			if self.linecolor % 2 != 0:

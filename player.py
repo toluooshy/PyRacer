@@ -2,7 +2,10 @@ import pygame, sys
 from pygame.locals import *
 
 class Player:
-	def __init__(self, width = 0, height = 0, x = 0, y = 0, img = pygame.transform.scale(pygame.image.load('images/car.png'), (200, 100)), dxs = 0):
+	def __init__(self, width = 0, height = 0, x = 0, y = 0,
+				img = pygame.transform.scale(pygame.image.load('images/straight1.png'), (118, 94)),
+				imgleft = pygame.transform.scale(pygame.image.load('images/left1.png'), (118, 94)),
+				imgright = pygame.transform.scale(pygame.image.load('images/right1.png'), (118, 94)), dxs = 0):
 		#hitbox width
 		self.width = width
 		#hitbox height
@@ -17,6 +20,8 @@ class Player:
 		self.dy = 0
 		#original reference image (to prevent quality loss from transformations)
 		self.img = img
+		self.imgleft = imgleft
+		self.imgright = imgright
 		#image to be displayed while running
 		self.image = pygame.transform.rotate(self.img, 0)
 		#xadjust and yadjust are constants to make the x and y coordinates in the self.hitbox correspond with the center of the image

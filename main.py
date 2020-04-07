@@ -26,18 +26,26 @@ def main():
 
 	street = Road()
 
-	tree1 = Tree()
+
 	racer = Player(30, 30, WIDTH/2, 7*HEIGHT/8 - 20)
 
-
+	i = 0
+	tree = np.zeros(500, dtype=object)
+	while i < 500:
+		tree[i] = Tree(0,0,0,WIDTH/2-20,HEIGHT/2+45)
+		tree[i+1] = Tree(1,0,0,WIDTH/2+10,HEIGHT/2+45)
+		i += 2
+	print(tree)
 
 
 	while True:
 		DISPLAY.blit(background, (0,-100))
+		print(street.distance)
 
 		street.readtrack()
 		street.update()
-		tree1.update()
+		tree[street.objectset].update()
+		tree[street.objectset+1].update()
 		racer.move()
 		font = pygame.font.Font('freesansbold.ttf', 32)
 		text = font.render(('SPEED: ' + str(round((street.speed/6.5)*18000)) + ' km/h'), True, WHITE, BLACK)
@@ -55,7 +63,11 @@ def main():
 		else:
 			racer.dxs = 0
 
-		tree1.dscaleby = street.speed*10
+		tree[street.objectset].dscaleby = street.speed*10
+		tree[street.objectset].dx = (410*street.speed - street.tilt*street.speed)
+		tree[street.objectset+1].dscaleby = street.speed*10
+		tree[street.objectset+1].dx = (340*street.speed + street.tilt*street.speed)
+
 
 
 		for event in pygame.event.get():
@@ -64,9 +76,13 @@ def main():
 				sys.exit()
 			if event.type == pygame.KEYDOWN:
 				#player moves left when left key is pressed
-				if event.key == pygame.K_LEFT: racer.dx = -5
+				if event.key == pygame.K_LEFT:
+					racer.dx = -5
+					racer.image = racer.imgleft
 				#player moves right when right key is pressed
-				if event.key == pygame.K_RIGHT: racer.dx = 5
+				if event.key == pygame.K_RIGHT:
+					racer.dx = 5
+					racer.image = racer.imgright
 				#player moves up when up key is pressed
 				if event.key == pygame.K_UP:
 					street.accelerate = True
@@ -77,9 +93,13 @@ def main():
 					street.sp = -.002
 			if event.type == pygame.KEYUP:
 				#player stops moving left
-				if event.key == pygame.K_LEFT: racer.dx = 0
+				if event.key == pygame.K_LEFT:
+					racer.dx = 0
+					racer.image = racer.img
 				#player stops moving right
-				if event.key == pygame.K_RIGHT: racer.dx = 0
+				if event.key == pygame.K_RIGHT:
+					racer.dx = 0
+					racer.image = racer.img
 				#player stops moving up
 				if event.key == pygame.K_UP:
 					 street.accelerate = False
