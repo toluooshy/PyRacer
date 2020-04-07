@@ -21,13 +21,13 @@ def main():
 	BLACK = (0,0,0)
 	GRAY = (50,50,50)
 	DISPLAY.fill(BLACK)
-	background = pygame.transform.scale(pygame.image.load('images/background3.png'), (WIDTH,HEIGHT))
+	background = pygame.transform.scale(pygame.image.load('images/backgrounds/background3.png'), (WIDTH,HEIGHT))
 
 
 	street = Road()
 
-
-	racer = Player(30, 30, WIDTH/2, 7*HEIGHT/8 - 20)
+	#change first number to change car
+	racer = Player(2, 30, 30, WIDTH/2, 7*HEIGHT/8 - 20)
 
 	i = 0
 	tree = np.zeros(500, dtype=object)
@@ -90,7 +90,7 @@ def main():
 				#player moves down when down key is pressed
 				if event.key == pygame.K_DOWN:
 					street.reverse = True
-					street.sp = -.002
+					street.sp = -.004
 			if event.type == pygame.KEYUP:
 				#player stops moving left
 				if event.key == pygame.K_LEFT:

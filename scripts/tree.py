@@ -7,7 +7,7 @@ HEIGHT = 500
 DISPLAY = pygame.display.set_mode((WIDTH,HEIGHT),0,32)
 
 class Tree:
-	def __init__(self, side = 0, width = 0, height = 0, x = WIDTH/2, y = HEIGHT/2, img = pygame.transform.scale(pygame.image.load('images/tree.png'), (90, 120))):
+	def __init__(self, side = 0, width = 0, height = 0, x = WIDTH/2, y = HEIGHT/2, img = pygame.transform.scale(pygame.image.load('images/objects/tree.png'), (90, 120))):
 		#side the object appears on
 		self.side = side
 		#hitbox width
